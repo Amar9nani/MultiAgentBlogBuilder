@@ -43,6 +43,13 @@ This project implements a multi-agent system with five specialized agents workin
   - `seo_agent.py`: Optimizes content for SEO
   - `review_agent.py`: Proofreads and improves content quality
 
+## Demo 
+
+
+Uploading Multi-Agent SEO Blog Generator - Google Chrome 2025-03-23 14-19-42 (1).mp4…
+
+
+
 ## Installation and Setup
 
 1. Clone the repository:
