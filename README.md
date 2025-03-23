@@ -45,9 +45,7 @@ This project implements a multi-agent system with five specialized agents workin
 
 ## Demo 
 
-
-Uploading Multi-Agent SEO Blog Generator - Google Chrome 2025-03-23 14-19-42 (1).mp4…
-
+https://github.com/user-attachments/assets/fab0cfab-5c2f-408f-8ff6-55385eb0e653
 
 
 ## Installation and Setup
