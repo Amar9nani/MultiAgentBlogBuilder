@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ topic }} - Blog Post</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i data-feather="align-justify"></i> SEO Blog Generator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">Generated Blog Post</h3>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-light" id="download-md">
+                                <i data-feather="download"></i> Markdown
+                            </button>
+                            <button class="btn btn-sm btn-light" id="download-html">
+                                <i data-feather="download"></i> HTML
+                            </button>
+                            <button class="btn btn-sm btn-light" id="download-txt">
+                                <i data-feather="download"></i> Text
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="text-muted mb-3">Generated on: {{ timestamp }}</h6>
+                        <div class="blog-content markdown-body">
+                            {{ content | safe }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-5">
+                    <a href="/" class="btn btn-primary">
+                        <i data-feather="plus-circle"></i> Generate Another Blog Post
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <p class="mb-0">Multi-Agent SEO Blog Generator &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize feather icons
+            feather.replace();
+            
+            // Convert markdown to HTML
+            const markdownContent = document.querySelector('.blog-content');
+            markdownContent.innerHTML = marked.parse(markdownContent.textContent);
+            
+            // Highlight code blocks if any
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+            
+            // Download handlers
+            document.getElementById('download-md').addEventListener('click', function() {
+                downloadBlog('markdown');
+            });
+            
+            document.getElementById('download-html').addEventListener('click', function() {
+                downloadBlog('html');
+            });
+            
+            document.getElementById('download-txt').addEventListener('click', function() {
+                downloadBlog('txt');
+            });
+            
+            function downloadBlog(format) {
+                fetch('/save_blog', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'format=' + format
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Create a blob and download
+                        const blob = new Blob([data.content], { type: data.content_type });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = data.filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error downloading blog:', error);
+                    alert('Error downloading blog: ' + error.message);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

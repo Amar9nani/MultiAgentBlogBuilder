@@ -1,0 +1,169 @@
+/* Custom styles for the Multi-Agent SEO Blog Generator */
+
+/* General styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Card and form styling */
+.card {
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.card-header {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Progress bar styling */
+#progress-container {
+    transition: all 0.3s ease;
+}
+
+/* Blog content styling */
+.markdown-body {
+    line-height: 1.6;
+}
+
+.markdown-body h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.markdown-body h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.markdown-body h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.markdown-body blockquote {
+    border-left: 4px solid var(--bs-info);
+    padding-left: 1rem;
+    color: var(--bs-body-color);
+    font-style: italic;
+    margin: 1rem 0;
+}
+
+.markdown-body ul, 
+.markdown-body ol {
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.markdown-body img {
+    max-width: 100%;
+    border-radius: 0.25rem;
+}
+
+.markdown-body p {
+    margin-bottom: 1rem;
+}
+
+.markdown-body code {
+    background-color: var(--bs-dark);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+}
+
+.markdown-body pre {
+    background-color: var(--bs-dark);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+/* Agent diagram visualization */
+.agent-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.agent {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: white;
+    position: relative;
+}
+
+.agent:after {
+    content: "↓";
+    position: absolute;
+    bottom: -1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.25rem;
+    color: var(--bs-body-color);
+    z-index: 1;
+}
+
+.agent:last-child:after {
+    display: none;
+}
+
+.agent svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.agent.research {
+    background-color: var(--bs-primary);
+}
+
+.agent.planning {
+    background-color: var(--bs-info);
+}
+
+.agent.content {
+    background-color: var(--bs-success);
+}
+
+.agent.seo {
+    background-color: var(--bs-warning);
+}
+
+.agent.review {
+    background-color: var(--bs-danger);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .markdown-body h1 {
+        font-size: 2rem;
+    }
+    
+    .markdown-body h2 {
+        font-size: 1.75rem;
+    }
+    
+    .markdown-body h3 {
+        font-size: 1.25rem;
+    }
+}

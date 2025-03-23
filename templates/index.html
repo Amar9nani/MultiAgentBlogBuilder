@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent SEO Blog Generator</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i data-feather="align-justify"></i> SEO Blog Generator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="text-center mb-0">HR Blog Post Generator</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead text-center mb-4">Generate high-quality, SEO-optimized HR blog posts using our advanced multi-agent system.</p>
+                        
+                        <form id="blog-form" action="/generate" method="post">
+                            <div class="mb-3">
+                                <label for="topic" class="form-label">Blog Topic (Optional)</label>
+                                <input type="text" class="form-control" id="topic" name="topic" placeholder="Leave blank to have our Research Agent find a trending HR topic">
+                                <div class="form-text">Suggested topics: Employee Retention, Remote Work Policies, HR Technology Trends</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="keywords" class="form-label">Target Keywords (Optional)</label>
+                                <input type="text" class="form-control" id="keywords" name="keywords" placeholder="Enter comma-separated keywords">
+                                <div class="form-text">Example: employee engagement, workplace culture, hr strategies</div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" id="generate-btn" class="btn btn-primary">
+                                    <i data-feather="cpu"></i> Generate Blog Post
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="progress-container" class="mt-4 d-none">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="progress-status">Generating blog post...</h5>
+                                    <div class="progress mb-3">
+                                        <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <p id="progress-message" class="mb-0">Starting up the agents...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card shadow mt-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="mb-0">About Multi-Agent SEO Blog Generator</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-5">
+                                <div class="text-center mb-4 mb-md-0">
+                                    <div class="agent-diagram">
+                                        <div class="agent research">
+                                            <i data-feather="search"></i>
+                                            <span>Research</span>
+                                        </div>
+                                        <div class="agent planning">
+                                            <i data-feather="layout"></i>
+                                            <span>Planning</span>
+                                        </div>
+                                        <div class="agent content">
+                                            <i data-feather="file-text"></i>
+                                            <span>Content</span>
+                                        </div>
+                                        <div class="agent seo">
+                                            <i data-feather="trending-up"></i>
+                                            <span>SEO</span>
+                                        </div>
+                                        <div class="agent review">
+                                            <i data-feather="check-circle"></i>
+                                            <span>Review</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <p>Our advanced multi-agent system leverages AI to generate high-quality, SEO-optimized blog posts for HR professionals.</p>
+                                <h5>The system includes five specialized agents:</h5>
+                                <ul>
+                                    <li><strong>Research Agent:</strong> Finds trending HR topics and gathers relevant information.</li>
+                                    <li><strong>Planning Agent:</strong> Creates a structured outline for the blog post.</li>
+                                    <li><strong>Content Agent:</strong> Writes comprehensive blog content based on research and outline.</li>
+                                    <li><strong>SEO Agent:</strong> Optimizes content for search engines following best practices.</li>
+                                    <li><strong>Review Agent:</strong> Proofreads and improves content quality.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <p class="mb-0">Multi-Agent SEO Blog Generator &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
